@@ -2,11 +2,13 @@ lockfileVersion: 5.3
 
 specifiers:
   cors: ^2.8.5
+  dotenv: ^16.0.0
   express: '4'
   socket.io: ^4.4.1
 
 dependencies:
   cors: 2.8.5
+  dotenv: 16.0.0
   express: 4.17.2
   socket.io: 4.4.1
 
@@ -129,6 +131,11 @@ packages:
 
   /destroy/1.0.4:
     resolution: {integrity: sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=}
+    dev: false
+
+  /dotenv/16.0.0:
+    resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
+    engines: {node: '>=12'}
     dev: false
 
   /ee-first/1.1.1:

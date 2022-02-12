@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const http = require('http')
 const { Server } = require('socket.io')
@@ -7,17 +9,19 @@ const app = express()
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:4000'],
+    origin: process.env.ORIGIN,
     credentials: true,
   }
 })
+
+const PORT = process.env.PORT || 4000
 
 app.use(cors())
 
 const crypto = require('crypto')
 
-server.listen(4000, () => {
-  console.log('Listening on *:3000')
+server.listen(PORT, () => {
+  console.log(`Server at ${PORT}`)
 })
 
 io.on('connection', (socket) => {
@@ -27,7 +31,6 @@ io.on('connection', (socket) => {
     let userData = { username, uuid }
 
     socket.emit('user-info', userData)
-    console.log(userData)
   })
 
   socket.on('send-message', (msg) => {
