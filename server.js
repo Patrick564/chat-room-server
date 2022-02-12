@@ -17,7 +17,7 @@ const io = new Server(server, {
 
 const PORT = process.env.PORT || 4000
 
-app.use(cors())
+app.use(cors({ origin: process.env.HEROKU_ORIGIN }))
 
 console.log(process.env.PORT)
 console.log(process.env.ORIGIN)
