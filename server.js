@@ -15,7 +15,7 @@ app.use(cors())
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: process.env.ORIGIN,
+    origin: ['https://chat-room-client-psi.vercel.app/', 'https://chat-room-client-patrick564.vercel.app/', 'https://chat-room-client-git-main-patrick564.vercel.app/'],
     methods: ['GET', 'POST'],
     credentials: true,
   }
