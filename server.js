@@ -9,15 +9,15 @@ const app = express()
 
 const PORT = process.env.PORT || 4000
 
-// app.use(cors({ origin: process.env.HEROKU_ORIGIN }))
-app.use(cors())
+app.use(cors({ origin: process.env.HEROKU_ORIGIN }))
+// app.use(cors())
 
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
     // origin: ['https://chat-room-client-psi.vercel.app/', 'https://chat-room-client-patrick564.vercel.app/', 'https://chat-room-client-git-main-patrick564.vercel.app/'],
     // origin: 'https://chat-room-client-*.vercel.app',
-    origin: process.env.HEROKU_ORIGIN,
+    origin: process.env.ORIGIN,
     methods: ['GET', 'POST'],
     credentials: true,
   }
