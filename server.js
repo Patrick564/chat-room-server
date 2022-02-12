@@ -19,6 +19,9 @@ const PORT = process.env.PORT || 4000
 
 app.use(cors())
 
+console.log(process.env.PORT)
+console.log(process.env.ORIGIN)
+
 const crypto = require('crypto')
 
 server.listen(PORT, () => {
