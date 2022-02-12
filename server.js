@@ -6,6 +6,12 @@ const { Server } = require('socket.io')
 const cors = require('cors')
 
 const app = express()
+
+const PORT = process.env.PORT || 4000
+
+// app.use(cors({ origin: process.env.HEROKU_ORIGIN }))
+app.use(cors())
+
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
@@ -14,13 +20,6 @@ const io = new Server(server, {
     credentials: true,
   }
 })
-
-const PORT = process.env.PORT || 4000
-
-app.use(cors({ origin: process.env.HEROKU_ORIGIN }))
-
-console.log(process.env.PORT)
-console.log(process.env.ORIGIN)
 
 const crypto = require('crypto')
 
