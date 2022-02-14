@@ -29,6 +29,7 @@ server.listen(PORT, () => {
 io.on('connection', async (socket) => {
   const uuid = crypto.randomUUID()
 
+  // Join rooms
   socket.on('join-room', (room) => {
     socket.join(room)
   })
@@ -40,16 +41,24 @@ io.on('connection', async (socket) => {
     io.emit('user-info-public', Array.from(users.values()))
   })
 
-  socket.on('send-user', () => {
-    socket.emit('user-info', users.get(socket.id))
+  // User info
+  socket.on('get-user', () => {
+    let userInfo = users.get(socket.id) || { id: '', username: ''  }
+
+    socket.emit('send-user', (userInfo))
   })
 
+  // Messages
   socket.on('send-message', (msg) => {
-    let userSender = users.get(socket.id)
+    let userSender = {
+      user: users.get(socket.id),
+      message: msg
+    }
 
-    io.to('general').emit('message', { msg, user: userSender })
+    io.to('general').emit('message', userSender)
   })
 
+  // Disconnect users
   socket.on('disconnect', () => {
     let deletedUser = users.get(socket.id)
 
