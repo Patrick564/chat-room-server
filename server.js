@@ -35,8 +35,13 @@ io.on('connection', async (socket) => {
 
   socket.on('user-connected', (username) => {
     users.set(socket.id, { id: uuid, username })
+
     socket.emit('user-info', users.get(socket.id))
     io.emit('user-info-public', Array.from(users.values()))
+  })
+
+  socket.on('send-user', () => {
+    socket.emit('user-info', users.get(socket.id))
   })
 
   socket.on('send-message', (msg) => {
@@ -49,10 +54,7 @@ io.on('connection', async (socket) => {
     let deletedUser = users.get(socket.id)
 
     users.delete(socket.id)
-    // io.emit('logout', {
-    //   deletedUser,
-    //   usersList: Array.from(users.values())
-    // })
+
     io.emit('logout', deletedUser)
     io.emit('user-info-public', Array.from(users.values()))
     socket.leave('general')
