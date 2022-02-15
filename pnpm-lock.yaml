@@ -2,12 +2,14 @@ lockfileVersion: 5.3
 
 specifiers:
   cors: ^2.8.5
+  dayjs: ^1.10.7
   dotenv: ^16.0.0
   express: '4'
   socket.io: ^4.4.1
 
 dependencies:
   cors: 2.8.5
+  dayjs: 1.10.7
   dotenv: 16.0.0
   express: 4.17.2
   socket.io: 4.4.1
@@ -104,6 +106,10 @@ packages:
     dependencies:
       object-assign: 4.1.1
       vary: 1.1.2
+    dev: false
+
+  /dayjs/1.10.7:
+    resolution: {integrity: sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==}
     dev: false
 
   /debug/2.6.9:

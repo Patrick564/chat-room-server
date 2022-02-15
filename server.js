@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const dayjs = require('dayjs')
 const express = require('express')
 const http = require('http')
 const { Server } = require('socket.io')
@@ -45,14 +46,16 @@ io.on('connection', async (socket) => {
   socket.on('get-user', () => {
     let userInfo = users.get(socket.id) || { id: '', username: ''  }
 
-    socket.emit('send-user', (userInfo))
+    socket.emit('send-user', userInfo)
   })
 
   // Messages
   socket.on('send-message', (msg) => {
+    let timeNow = dayjs()
     let userSender = {
       user: users.get(socket.id),
-      message: msg
+      message: msg,
+      sendTime: `${timeNow?.$H}:${timeNow?.$m}`
     }
 
     io.to('general').emit('message', userSender)
